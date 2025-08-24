@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Judge Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #74ebd5, #9face6, #ffdde1, #e0c3fc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            color: #6c5ce7;
+            animation: colorShift 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes colorShift {
+            0% { color: #6c5ce7; }
+            100% { color: #00b894; }
+        }
+
+        .form-control, .form-select {
+            border-radius: 10px;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #6c5ce7;
+            box-shadow: 0 0 10px rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-custom {
+            font-size: 1.1rem;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #6c5ce7, #00b894);
+            border: none;
+            color: #fff;
+            animation: shine 3s infinite alternate;
+        }
+
+        @keyframes shine {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.3); }
+        }
+
+        .btn-outline-primary:hover, .btn-outline-info:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            backdrop-filter: blur(20px);
+            transform: scale(1.02);
+            transition: all 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="card shadow p-4">
+        <h3>🎤 Judge Panel</h3>
+
+        <form method="POST" action="/judge">
+            <div class="mb-3">
+                <label for="participant" class="form-label">Select Participant:</label>
+                <select class="form-select" name="participant" id="participant" required>
+                    <option value="" disabled selected>Select a participant</option>
+                    {% for participant in participants %}
+                        <option value="{{ participant['id'] }}">
+                            {{ participant['name'] }} ({{ participant['topic'] }})
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="score" class="form-label">Score (0–100):</label>
+                <input type="number" class="form-control" name="score" id="score" min="0" max="100" required>
+            </div>
+
+            <button type="submit" class="btn btn-custom btn-success w-100">✅ Submit Score</button>
+        </form>
+
+        <div class="mt-4 text-center">
+            <a href="/" class="btn btn-outline-primary me-2">🏠 <strong>Home</strong></a>
+            <a href="/results" class="btn btn-outline-info">📊 <strong>View Results</strong></a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

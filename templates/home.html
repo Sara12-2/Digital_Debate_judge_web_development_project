@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Debate Judge</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="description" content="A fast, fair, and beautifully designed digital debate judging platform.">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Typed.js for text animation -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #74ebd5, #9face6, #ffdde1, #e0c3fc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: smoothEntrance 1.5s ease-out;
+        }
+
+        @keyframes smoothEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            color: #333;
+            animation: colorShift 5s infinite alternate ease-in-out;
+        }
+
+        @keyframes colorShift {
+            0% { color: #6c5ce7; }
+            100% { color: #00b894; }
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #444;
+            margin-bottom: 30px;
+        }
+
+        .btn-custom {
+            font-size: 1.1rem;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            background-color: #f39c12 !important;
+        }
+
+        .btn-judge { background-color: #6c5ce7; color: #fff; }
+        .btn-results { background-color: #00b894; color: #fff; }
+        .btn-register { background-color: #fd79a8; color: #fff; }
+
+        .glass-card:hover {
+            backdrop-filter: blur(20px);
+            transform: scale(1.03);
+            transition: all 0.4s ease-in-out;
+        }
+
+        @media (max-width: 576px) {
+            h1 { font-size: 2rem; }
+            .btn-custom { font-size: 1rem; padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="glass-card">
+    <h1 id="animatedText">🏆 Digital Debate Judge</h1>
+    <p>Efficient. Fair. Beautifully Organized.</p>
+
+    <div class="d-grid gap-3 col-10 mx-auto">
+        <a href="/judge" class="btn btn-custom btn-judge">🎤 Judge Panel</a>
+        <a href="/results" class="btn btn-custom btn-results">📊 View Results</a>
+        <a href="/register" class="btn btn-custom btn-register">📝 Register Participant</a>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Typed.js for animated text -->
+<script>
+    var typed = new Typed("#animatedText", {
+        strings: ["🏆 Digital Debate Judge", "🔥 Fast & Fair", "✨ Super Intuitive"],
+        typeSpeed: 70,
+        backSpeed: 50,
+        loop: true
+    });
+</script>
+
+</body>
+</html>
