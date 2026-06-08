@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Register Participant{% endblock %}
+
+{% block content %}
+<div class="glass-card p-5 animate" style="max-width: 550px; margin: 0 auto;">
+    <div class="text-center mb-4">
+        <i class="fas fa-user-plus" style="font-size: 3rem; color: #ffd700;"></i>
+        <h2 style="color: #fff; margin-top: 15px;">Register Participant</h2>
+        <p style="color: rgba(255,255,255,0.7);">Add a new debater to the competition</p>
+    </div>
+
+    <form method="POST" action="/register">
+        <div class="mb-4">
+            <label><i class="fas fa-user"></i> Participant Name</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter full name" required>
+        </div>
+
+        <div class="mb-4">
+            <label><i class="fas fa-comment"></i> Debate Topic</label>
+            <input type="text" name="topic" class="form-control" placeholder="Enter debate topic" required>
+        </div>
+
+        <button type="submit" class="btn btn-custom btn-primary-custom w-100">
+            <i class="fas fa-save"></i> Register Participant
+        </button>
+    </form>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-custom" style="background: rgba(255,255,255,0.2); color: white;">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Results | Leaderboard{% endblock %}
+
+{% block content %}
+<div class="animate">
+    <div class="text-center mb-4">
+        <i class="fas fa-trophy" style="font-size: 3rem; color: #ffd700;"></i>
+        <h2 style="color: #fff; margin-top: 15px;">Debate Results</h2>
+        <p style="color: rgba(255,255,255,0.7);">Live leaderboard and rankings</p>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-value">{{ total }}</div>
+                <div class="stat-label">Total Participants</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-crown"></i></div>
+                <div class="stat-value">{{ highest }}</div>
+                <div class="stat-label">Highest Score</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-chart-simple"></i></div>
+                <div class="stat-value">{{ avg_score }}</div>
+                <div class="stat-label">Average Score</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Table -->
+    {% if results %}
+    <div class="table-custom">
+        <table class="table table-custom text-center mb-0">
+            <thead>
+                <tr>
+                    <th><i class="fas fa-hashtag"></i> Rank</th>
+                    <th><i class="fas fa-user"></i> Name</th>
+                    <th><i class="fas fa-comment"></i> Topic</th>
+                    <th><i class="fas fa-star"></i> Score</th>
+                    <th><i class="fas fa-trash"></i> Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in results %}
+                <tr {% if loop.index == 1 %}class="winner-row"{% endif %}>
+                    <td>
+                        {% if loop.index == 1 %}
+                            <i class="fas fa-crown" style="color: #ffd700;"></i> 1st
+                        {% elif loop.index == 2 %}
+                            <i class="fas fa-medal" style="color: #c0c0c0;"></i> 2nd
+                        {% elif loop.index == 3 %}
+                            <i class="fas fa-medal" style="color: #cd7f32;"></i> 3rd
+                        {% else %}
+                            {{ loop.index }}th
+                        {% endif %}
+                    </td>
+                    <td><strong>{{ row.name }}</strong></td>
+                    <td>{{ row.topic }}</td>
+                    <td>
+                        <span class="badge" style="background: linear-gradient(135deg, #667eea, #764ba2); font-size: 0.9rem;">
+                            {{ row.score }}
+                        </span>
+                    </td>
+                    <td>
+                        <form method="POST" action="/delete/{{ row.id }}" style="display:inline;">
+                            <button type="submit" class="btn btn-sm" style="background: rgba(235, 51, 73, 0.8); color: white; border-radius: 50px;" 
+                                    onclick="return confirm('Delete {{ row.name }}?')">
+                                <i class="fas fa-trash-alt"></i> Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="glass-card p-5 text-center">
+        <i class="fas fa-chart-line" style="font-size: 3rem; color: #ffd700;"></i>
+        <p style="color: white; margin-top: 15px;">No results yet. Add participants and judge them!</p>
+        <a href="/register" class="btn btn-custom btn-primary-custom">
+            <i class="fas fa-user-plus"></i> Register Participant
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-custom" style="background: rgba(255,255,255,0.2); color: white;">
+            <i class="fas fa-home"></i> Back to Home
+        </a>
+        <a href="/judge" class="btn btn-custom btn-primary-custom">
+            <i class="fas fa-gavel"></i> Judge Panel
+        </a>
+    </div>
+</div>
+{% endblock %}

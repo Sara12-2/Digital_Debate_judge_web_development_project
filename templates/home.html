@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Digital Debate Judge{% endblock %}
+
+{% block content %}
+<div class="glass-card p-5 text-center animate" style="max-width: 600px; margin: 0 auto;">
+    <i class="fas fa-gavel" style="font-size: 4rem; color: #ffd700; margin-bottom: 20px;"></i>
+    <h1 style="font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 15px;">
+        Digital Debate Judge
+    </h1>
+    <p style="color: rgba(255,255,255,0.9); margin-bottom: 30px; font-size: 1.1rem;">
+        <i class="fas fa-tachometer-alt"></i> Efficient. <i class="fas fa-balance-scale"></i> Fair. <i class="fas fa-star"></i> Beautifully Organized.
+    </p>
+
+    <div class="d-grid gap-3">
+        <a href="/judge" class="btn btn-custom btn-primary-custom">
+            <i class="fas fa-gavel"></i> Judge Panel
+        </a>
+        <a href="/results" class="btn btn-custom btn-success-custom">
+            <i class="fas fa-chart-line"></i> View Results
+        </a>
+        <a href="/register" class="btn btn-custom" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white;">
+            <i class="fas fa-user-plus"></i> Register Participant
+        </a>
+    </div>
+</div>
+{% endblock %}
